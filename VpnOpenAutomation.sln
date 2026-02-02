@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36518.9 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VpnOpenAutomation", "VpnOpenAutomation\VpnOpenAutomation.csproj", "{F22F5B30-87CE-44AE-A8F6-3B7AC0731F91}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F22F5B30-87CE-44AE-A8F6-3B7AC0731F91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F22F5B30-87CE-44AE-A8F6-3B7AC0731F91}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F22F5B30-87CE-44AE-A8F6-3B7AC0731F91}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F22F5B30-87CE-44AE-A8F6-3B7AC0731F91}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DEA7DF7B-CBC1-4DE2-A288-97179415D72F}
+	EndGlobalSection
+EndGlobal
