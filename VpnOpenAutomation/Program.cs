@@ -10,7 +10,6 @@ namespace VpnOpenAutomation
 
             var vpnService = new VpnService();
 
-            //ASK IF USER WANT TO PUT HIS CREDENTIALS HERE
             Console.WriteLine("Do you want to enter your VPN credentials? (if you already have your credentials saved is not needed)(press 1 if you want)");
 
             if(Console.ReadLine() == "1")
@@ -19,7 +18,6 @@ namespace VpnOpenAutomation
                 var username = Console.ReadLine();
                 Console.WriteLine("Enter VPN Password: ");
                 var password = Console.ReadLine();
-                //Save the data
 
                 var saved = vpnService.SetCredentials(username, password);
 
@@ -31,9 +29,6 @@ namespace VpnOpenAutomation
             }
             while (true) 
             {
-                
-                
-
                 vpnService.Connect();
 
                 Console.WriteLine("Press 'q' to quit, or any key to try to connect again");
@@ -45,8 +40,6 @@ namespace VpnOpenAutomation
                 }
 
             }
-            //run the vpn automation
-
         }
     }
 }

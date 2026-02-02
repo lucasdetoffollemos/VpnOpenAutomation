@@ -11,13 +11,11 @@ namespace VpnOpenAutomation
     public class VpnService
     {
         private const string TARGET_APP = "VpnOpenAutomation";
+        private const string VPN_NAME = "VPN-NDDPRINT";
         public VpnService() { }
-
 
         public bool SetCredentials(string? username, string? password)
         {
-            // Store or process the provided VPN credentials
-
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
                 throw new ArgumentException("Username and password cannot be null or empty.");
@@ -35,10 +33,8 @@ namespace VpnOpenAutomation
 
         }
 
-
         public void Connect()
         {
-            // Implement VPN connection logic here using the provided credentials
             try
             {
                 var cred = new Credential { Target = TARGET_APP };
@@ -51,7 +47,6 @@ namespace VpnOpenAutomation
                 var username = cred.Username;
                 var password = cred.Password;
 
-                //logic to connect to VPN using username and password
                 Console.WriteLine($"Connecting to VPN with username: {username}");
 
                 bool canRun = RunVpnConnection(username, password);
@@ -75,7 +70,7 @@ namespace VpnOpenAutomation
             var startInfo = new ProcessStartInfo
             {
                 FileName = "cmd.exe",
-                Arguments = $"/c rasdial VPN-NDDPRINT {username} {password}",
+                Arguments = $"/c rasdial {VPN_NAME} {username} {password}",
                 UseShellExecute = false,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
