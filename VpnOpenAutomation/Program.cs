@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 
 namespace VpnOpenAutomation
 {
@@ -11,6 +12,9 @@ namespace VpnOpenAutomation
             var windowsProcess = new WindowsProcess();
             var vpnService = new VpnService(credentialManager, windowsProcess);
 
+            Console.WriteLine("If you want to connect to VPN-MFA press 0, if you want VPN-NDDPRINT press anything");
+
+            var vpnChoice = Console.ReadLine();
 
             while (true)
             {
@@ -20,8 +24,8 @@ namespace VpnOpenAutomation
                 {
                     Console.WriteLine("Enter VPN Username: ");
                     var username = Console.ReadLine();
-                    Console.WriteLine("Enter VPN Password: ");
-                    var password = Console.ReadLine();
+
+                    var password = ReadPassword("Enter VPN Password: ");
 
                     var saved = vpnService.SetCredentials(username, password);
 
@@ -32,7 +36,14 @@ namespace VpnOpenAutomation
                     }
                 }
 
-                vpnService.Connect();
+                if(vpnChoice == "0")
+                {
+                    vpnService.Connect(VpnType.MFA);
+                }
+                else
+                {
+                    vpnService.Connect(VpnType.PRINT);
+                }
 
                 Console.WriteLine("Press 'q' to quit, or any key to try to connect again");
                 var input = Console.ReadLine();
@@ -43,6 +54,32 @@ namespace VpnOpenAutomation
                 }
 
             }
+        }
+
+        private static string ReadPassword(string prompt, char mask = '*')
+        {
+            Console.WriteLine(prompt);
+            var sb = new StringBuilder();
+            ConsoleKeyInfo key;
+
+            while ((key = Console.ReadKey(true)).Key != ConsoleKey.Enter)
+            {
+                if (key.Key == ConsoleKey.Backspace && sb.Length > 0)
+                {
+                    sb.Length--;
+                    Console.CursorLeft--;
+                    Console.Write(" ");
+                    Console.CursorLeft--;
+                }
+                else if (!char.IsControl(key.KeyChar))
+                {
+                    sb.Append(key.KeyChar);
+                    if (mask != '\0') Console.Write(mask);
+                }
+            }
+
+            Console.WriteLine();
+            return sb.ToString();
         }
     }
 }

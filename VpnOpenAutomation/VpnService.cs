@@ -21,7 +21,8 @@ namespace VpnOpenAutomation
         }
 
         public bool SetCredentials(string? username, string? password)
-        {
+        
+      {
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
                 Console.WriteLine("Username and password cannot be null or empty.");
@@ -31,7 +32,7 @@ namespace VpnOpenAutomation
             return _credentialManager.SetCredentials(username, password);
         }
 
-        public void Connect()
+        public void Connect(VpnType vpnType)
         {
             var usernamePassword = _credentialManager.LoadCredentials();
 
@@ -46,7 +47,7 @@ namespace VpnOpenAutomation
 
             Console.WriteLine($"Connecting to VPN with username: {username}");
 
-            bool canRun = _windowsProcess.RunVpnConnection(username, password);
+            bool canRun = _windowsProcess.RunVpnConnection(username, password, vpnType);
 
             if (canRun)
             {
